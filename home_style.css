@@ -5,7 +5,8 @@
     box-sizing: border-box;
 }
 body{
-    color:rgb(97, 97, 97);
+    /* color:rgb(97, 97, 97); */
+    background-color: #1c1b29;
     /* margin:30px; */
     line-height:1.7;
     font-family: 'Alegreya Sans', sans-serif;
@@ -17,12 +18,14 @@ body{
 }
 
 .header{
+
     height:95vh;
     background-image:linear-gradient(to right bottom, rgba(119, 98, 77, 0.801),rgba(233, 197, 160, 0.801)),url(imgs/study2.jpg);
     background-size:cover;
     background-position:top;
     clip-path:polygon(0 0,100% 0 ,100% 75vh,0 100%);
     position: relative;
+    box-shadow: 0 0 30px rgba(0,0,0,0.18);
 }
 
 .header-down{
@@ -191,3 +194,5 @@ animation-fill-mode: backwards;
     opacity: 0;
 
 }
+
+

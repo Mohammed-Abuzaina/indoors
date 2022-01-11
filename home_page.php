@@ -88,7 +88,7 @@ if(isset($_POST['teacher_profile'])){
     <!------------------- NAVBAR --------------- -->
 
     <div class="padd">
-        <header class="header">
+        <header class="header shadow">
             <div class="logo-box">
                 <!-- <img src="./imgs/bran.png" alt="" class="logo"> -->
 
@@ -128,7 +128,7 @@ if(isset($_POST['teacher_profile'])){
 
 
                 <div class="col">
-                    <div class="card ">
+                    <div class="card shadow ">
 
                         <img src="./uploads/<?=$rows['img'];?>" width="50%" alt="">
                         <div class="card-body">
@@ -174,20 +174,6 @@ if(isset($_POST['teacher_profile'])){
         </div>
 
         <div class="text-center line my-4"></div>
-        <header class="header-down">
-
-
-
-
-
-        </header>
-
-
-
-
-
-
-
 
 
 
@@ -198,6 +184,25 @@ if(isset($_POST['teacher_profile'])){
 
 
         <?php
+include 'cards.php';
+?>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <?php
 include 'footer.php';
 ?>
 
