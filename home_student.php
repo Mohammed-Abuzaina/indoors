@@ -27,7 +27,7 @@ echo $_SESSION['id'];
         $_SESSION['subject_1']=$row['subject_1'];
         $teacher_name=$row['username'];
         $enrolls=$row['enrolls'];
-        // $enroll=int()$enrolls;
+        
         $enroll= intval($enrolls);
        
         
