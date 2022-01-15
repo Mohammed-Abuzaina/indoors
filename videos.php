@@ -3,9 +3,28 @@ session_start();
 include 'init/connect.php';
 echo $_SESSION['id'];
 echo '<br>';
-echo $_SESSION['teacher_id'];
+$teacher_id=$_SESSION['teacher_id'];
 ?>
 <?php
+
+if(isset($_SESSION['teacher_id'])){
+
+    $sql_1 = "SELECT * FROM `teacher` where id='$teacher_id'";
+    $result_1 =mysqli_query($conn, $sql_1);
+    if(!$result_1){
+        echo mysqli_error($conn);
+    }
+    $row = mysqli_fetch_assoc($result_1);
+    while($row =mysqli_fetch_assoc($result_1)){
+
+        
+        $raters=$row['raters'];
+        $enrolls=$row['enrolls'];
+    }
+}
+// $_SESSION['teacher_id']=$row['id'];
+// $teacher_id=$_SESSION['teacher_id'];
+
     $id=$_SESSION['id'];
     $sql="SELECT * from student where id='$id'";
     $result=mysqli_query($conn,$sql);
@@ -14,14 +33,8 @@ echo $_SESSION['teacher_id'];
 
 
 
-    $teacher_id=$_SESSION['teacher_id'];
-
-$sql_1 = "SELECT * FROM `teacher`";
-$result_1 =mysqli_query($conn, $sql_1);
-$row = mysqli_fetch_assoc($result_1);
-
-$raters=$row['raters'];
-$enrolls=$row['enrolls'];
+    
+    
 
 $sql_3 = "SELECT * FROM `rated` where student_id='$id' and teacher_id='$teacher_id'";
 $result_3 =mysqli_query($conn, $sql_3);
@@ -33,6 +46,7 @@ if(mysqli_num_rows($result_3)>0){
     $sql_4 = "INSERT INTO `rated`(`student_id`, `teacher_id`) VALUES ('$id','$teacher_id')";    
     $result_4 =mysqli_query($conn, $sql_4);
 }
+
 
 ?>
 
@@ -57,9 +71,9 @@ if(mysqli_num_rows($result_3)>0){
 <body>
 
     <!------------------- NAVBAR --------------- -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-darke">
         <div class="container-fluid">
-            <img src="./uploads/logo.jpg" class="rounded-circle" alt="Cinque Terre" width="10%" height="10%">
+            <img src="./imgs/32412355.jpg" class="rounded-circle" alt="Cinque Terre" width="5%">
 
 
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -103,9 +117,12 @@ if(mysqli_num_rows($result_3)>0){
         <table class=" border border-5 table table-striped container-xl mx-auto mt-4">
 
             <tr>
+
+
                 <th>
                     Video Nubmer
                 </th>
+
                 <th>
                     Video Description
                 </th>
@@ -118,18 +135,28 @@ if(mysqli_num_rows($result_3)>0){
 
             </tr>
 
-
             <?php
-                $teacher_id= $_SESSION['teacher_id'];
-                $sql1="SELECT * from video where teacher_id='$teacher_id'";
-                $result1=mysqli_query($conn,$sql1) or die(mysqli_error($conn));
-                // $row=mysqli_fetch_assoc($result1);
+            $teacher_id=$_SESSION['teacher_id'];
+                
+                $sql_4="SELECT * from video where teacher_id='$teacher_id'";
+                $result1_4=mysqli_query($conn,$sql_4) ;
+                if(!mysqli_num_rows($result1_4)){
+echo "<tr>";
+echo "<th colspan='3'>";
+echo "<h1 class='display-1'>";
+echo "NO video found !";
+echo "</h1>";
+echo "</th>";
+echo "</tr>";
+echo "</table>";
+                }else{
             
               
             
-        while($video = mysqli_fetch_assoc($result1)){
+        while($video = mysqli_fetch_assoc($result1_4)){
         
         ?>
+
             <tr>
                 <td>
                     <?=$count++;?>
@@ -153,48 +180,61 @@ if(mysqli_num_rows($result_3)>0){
             <?php
         
         }
+        }
         
         
     
     
 ?>
+
+
             <!-------------------- Rating form ---------------------->
-        </table>
-        <?php
-        if(!mysqli_num_rows($result_3)>0){
+            <tr>
+
+
+                <?php
+        if(mysqli_num_rows($result_3)>0){
             ?>
-        <div class="vstack gap-2 col-md-5 mx-auto ">
-
-            <form action="" method="post">
-
-                <div class="rateyo form-control  " id="rating" data-rateyo-rating="4" data-rateyo-num-stars="5"
-                    data-rateyo-score="3">
-                </div>
 
 
+                <form action="" method="post">
+                    <td>
 
-                <span class='result form-control w-25 '>0</span>
-
-
-                <input type="hidden" name="rating">
-
-                <br>
-                <!-- <input type="hidden" name="rating"> -->
-
-                <input type="submit" class="btn btn-primary " name="add" value="Rate me">
+                    </td>
+                    <td>
+                        <div class="rateyo " id="rating" data-rateyo-rating="4" data-rateyo-num-stars="5"
+                            data-rateyo-score="3">
+                        </div>
+                        <span class='result'>0</span>
+                    </td>
 
 
 
-            </form>
 
-        </div>
-        <?php
+                    <input type="hidden" name="rating">
+
+
+                    <br>
+                    <!-- <input type="hidden" name="rating"> -->
+
+                    <td>
+                        <input type="submit" class="btn btn-warning btn-lg " name="add" value="Rate me">
+                    </td>
+
+
+
+                </form>
+
+
+                <?php
         }
+        
         ?>
-        <!-------------------- Rating form ---------------------->
+                <!-------------------- Rating form ---------------------->
 
+            </tr>
 
-
+        </table>
 
     </div>
 
@@ -252,20 +292,50 @@ include 'footer.php';
 //     $result_4 =mysqli_query($conn, $sql_4);
 // }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST")
+// if ($_SERVER["REQUEST_METHOD"] == "POST")
+// {
+
+
+
+//     $num_enrolls=intval($enrolls);
+//     $num_enrolls++;
+//     $num_raters= intval($raters);
+//     echo is_int($num_raters),'fafas',$num_raters;
+//     $num_raters++;
+    
+//     $rating = $_POST["rating"];
+
+//     $sql_2="UPDATE `teacher` SET `rating`='$rating'/$num_raters,`raters`='$num_raters' ,`enrolls`='$num_enrolls' WHERE id='$teacher_id'";
+//     $result_2 =mysqli_query($conn, $sql_2);
+
+    
+//     if ($result_1 && $result_2)
+//     {
+//         echo "New Rate addedddd successfully";
+//     }
+//     else
+//     {
+//         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+//     }
+//     mysqli_close($conn);
+// }
+
+
+
+if(isset($_POST['add']))
 {
 
 
 
-    $num_enrolls=intval($enrolls);
-    $num_enrolls++;
+    // $num_enrolls=intval($enrolls);
+    // $num_enrolls++;
     $num_raters= intval($raters);
     echo is_int($num_raters),'fafas',$num_raters;
     $num_raters++;
     
     $rating = $_POST["rating"];
 
-    $sql_2="UPDATE `teacher` SET `rating`='$rating'/$num_raters,`raters`='$num_raters' ,`enrolls`='$num_enrolls' WHERE id='$teacher_id'";
+    $sql_2="UPDATE `teacher` SET `rating`='$rating'/'$num_raters',`raters`='$num_raters'  WHERE id='$teacher_id'";
     $result_2 =mysqli_query($conn, $sql_2);
 
     
@@ -279,4 +349,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
     mysqli_close($conn);
 }
+
 ?>

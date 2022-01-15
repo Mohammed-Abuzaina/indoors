@@ -43,7 +43,7 @@
                         <textarea class="form-control" id="exampleMessage" placeholder="Message"></textarea>
                     </fieldset>
                     <fieldset class="form-group text-xs-right">
-                        <button type="button" class="btn btn-secondary-outline btn-lg">Send</button>
+                        <button type="button" class="btn btn-outline-dark mt-2 btn-lg">Send</button>
                     </fieldset>
                 </form>
             </div>

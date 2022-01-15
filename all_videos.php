@@ -1,32 +1,63 @@
 <?php
 session_start();
-include './init/connect.php';
-// echo $_SESSION['id'];
+include 'init/connect.php';
+echo $_SESSION['id'];
+?>
+<?php
+    $id=$_SESSION['id'];
+    $sql="SELECT * from student where id='$id'";
+    $result=mysqli_query($conn,$sql);
+    $rows=mysqli_fetch_assoc($result);
+   
+    
 ?>
 
 <?php
-
-if(isset($_SESSION['id'])){
-    $id=$_SESSION['id'];
-    $sql="SELECT * from teacher where id=$id";
-    // echo $_SESSION['id'];
-    $result=mysqli_query($conn,$sql);
-    $rows=mysqli_fetch_assoc($result);
-    $_SESSION['id']=$rows['id'];
     $id=$_SESSION['id'];
     
-}else {
-    header('Location:login.php');
-}
+    if(isset($_POST['buy'])){
+        
+        $teacher_id=$_POST['teacher_id'];
+        $_SESSION['teacher_id']=$_POST['teacher_id'];
+        $student_id=$id;
+        
+        $query="SELECT * FROM teacher WHERE id='$teacher_id'";
+        $action=mysqli_query($conn,$query);
+        $row=mysqli_fetch_assoc($action);
 
-if(isset($_POST['teacher_profile'])){
-    header("location:teacher/teacher_profile.php?id=$id");
-}
+        // $enrolls=$row['enrolls'];
+
+        $_SESSION['subject_1']=$row['subject_1'];
+        $teacher_name=$row['username'];
+        $enrolls=$row['enrolls'];
+        // $enroll=int()$enrolls;
+        $enroll= intval($enrolls);
+        $enroll++;
+       
+        
+  
+        $subject=$row['subject_1'];
+
+        
+        
+        $sql="INSERT INTO `cart`( `teacher_id`, `teacher_name`, `student_id`, `subject`) VALUES ('$teacher_id','$teacher_name','$student_id','$subject')";
+        $result=mysqli_query($conn,$sql);
+        if($result){
+            $query2="UPDATE `teacher` SET `enrolls`='$enroll' WHERE id='$teacher_id'";
+            $action1=mysqli_query($conn,$query2);
+            
+            header("Location:learnings.php?id=$student_id");
+        }
+        else{
+            echo'you bought that course already !  ', mysqli_error($conn);
+        }
+    }
+  
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
@@ -35,12 +66,14 @@ if(isset($_POST['teacher_profile'])){
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="home_style.css">
     <link rel="stylesheet" href="course_card.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Home page</title>
 </head>
 
 <body>
+
 
     <!------------------- NAVBAR --------------- -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-darke">
@@ -51,34 +84,28 @@ if(isset($_POST['teacher_profile'])){
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./home_page.php">Home page</a>
+                        <a class="nav-link active" aria-current="page" href="./home_student.php">Home page</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"
-                            href="./teacher/teacher_profile.php?id<?= $id; ?> ?>">Teacher
-                            profile</a>
+                        <a class="nav-link " aria-current="page" href="./learnings.php?id=<?=$rows['id'];?>">My
+                            learnigs</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="./teacher/view.php?id=<?= $id; ?>">Videos</a>
-                    </li>
+
+
 
                 </ul>
 
                 <div class="dropdown ms-auto as ">
-                    <a class="navbar-brand" href="teacher_profile.php?id=<?= $id; ?>"> <?= $rows['username']; ?></a>
+                    <a class="navbar-brand" href=""> <?= $rows['username']; ?></a>
                     <a class="dropdown-toggle ms-auto" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="./uploads/<?=$rows['img'];?>" width="60vh" alt="">
+                        <img src="./imgs/bran.png" width="60vh" alt="">
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li>
-                            <a class="dropdown-item ms-auto " href="./teacher/update_teacher.php?id=<?=$id;?>">Update
-                                profile</a>
-                        </li>
-                        <li><a class=" dropdown-item" href="#">Another action</a>
-                        </li>
+
+
                         <li><a class="dropdown-item" href="./teacher/logout.php">logout</a></li>
                     </ul>
                 </div>
@@ -87,41 +114,15 @@ if(isset($_POST['teacher_profile'])){
             </div>
         </div>
     </nav>
+
     <!------------------- NAVBAR --------------- -->
-
     <div class="padd">
-        <header class="header shadow">
-            <div class="logo-box">
-                <!-- <img src="./imgs/bran.png" alt="" class="logo"> -->
-
-
-            </div>
-            <div class="text-box">
-                <h1 class="heading-primary">
-                    <span class="heading-main">indoors</span>
-                    <span class="heading-sub">Study always with pros </span>
-                </h1>
-
-                <a href="./teacher/all_video_teacher.php" class="button btn-white">Discover our courses</a>
-
-            </div>
-
-
-
-
-        </header>
-        <div class="text-center line mb-2">
-            <h3 class="text-center  display-3">Most popular Courses</h3>
-        </div>
-
-
-
 
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
         //  $sql="SELECT * from teacher  limit 3";
-         $sql="SELECT * FROM teacher ORDER BY RAND ()  LIMIT 3";
+         $sql="SELECT * FROM teacher ORDER BY RAND ()  ";
          $result=mysqli_query($conn,$sql);
          while($rows=mysqli_fetch_assoc($result)){
              
@@ -139,11 +140,11 @@ if(isset($_POST['teacher_profile'])){
                             <span class="date"><?=$rows['username'];?></span>
                             <h2><?=$rows['subject_1'];?></h2>
                             <p>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum
-
-                                eligendi dolor</p>
-
-                            <input type="submit" name="buy" class="btn btn-success" value="Enroll Now" id="inputfield1">
-
+                            </p>
+                            <div class="price"><?=$rows['price'];?> JD</div>
+                            <button type="submit" name="buy" class="btn-brown" style="vertical-align:middle"
+                                id="inputfield1">
+                                <span>Enroll Now</span></button>
                         </div>
                         <div class="card-stats">
                             <div class="stat">
@@ -169,47 +170,9 @@ if(isset($_POST['teacher_profile'])){
          }
          
          ?>
+
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="text-center line my-4"></div>
-
-
-
-
-
-
-
-
-
-        <?php
-include 'cards.php';
-?>
-
-
-
-
     </div>
-
-
-
-
-
-
 
 
 

@@ -1,4 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Alegreya+Sans:300);
 
+
+.bg-darke {
+  /* --bs-bg-opacity: 1; */
+  /* background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important; */
+  background-color: #1c1b29e7;
+}
 .login{
     margin:0 auto;
     text-align:center;
@@ -18,7 +25,6 @@
     margin-top: 5%;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Alegreya+Sans:300);
 
 
 
@@ -38,7 +44,7 @@
 
 }
 .as{
-  margin-right: 73px;
+  margin-right: 2%;
 }
 .footer {
   position: absolute;

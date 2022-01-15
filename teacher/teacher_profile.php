@@ -114,6 +114,17 @@ include 'navbar.php';
                         </div>
                     </td>
                 </tr>
+                <!--  row -->
+                <tr>
+                    <td>
+                        price
+                    </td>
+                    <td>
+                        <div class="col-auto">
+                            <input type="number" class="form-control" value="<?=$rows['price']?>" disabled>
+                        </div>
+                    </td>
+                </tr>
 
                 <!--  row -->
                 <tr>

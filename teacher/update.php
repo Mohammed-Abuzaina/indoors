@@ -29,6 +29,7 @@ if(isset($_POST['update'])){
     $phone_number=$_POST['phone_number'];
     $university=$_POST['university'];
     $major=$_POST['major'];
+    $price=$_POST['price'];
     $subject_1=$_POST['subject_1'];
     $subject_2=$_POST['subject_2'];
     
@@ -38,6 +39,7 @@ if(isset($_POST['update'])){
     `phone_number`='$phone_number',
     `university`='$university',
     `major`='$major',
+    `price`='$price',
     `subject_1`='$subject_1',
     `subject_2`='$subject_2',
     `img`='$image'

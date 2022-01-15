@@ -6,27 +6,47 @@
 
 .cards{
     display: grid;
-    grid-template-columns: repeat(10,minmax(30%,.5fr));
-    padding: 5% 0;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    padding: 20px;
     grid-gap: 40px;
+    transition:all 0.5s; 
+    animation-name:back;
+    
+    
     
 }
+
+
 .cardUI{
     background-color: #1c1b29;
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(0,0,0,0.18);
-    
 }
 .containerUI{
     position: relative;
-    clip-path: polygon(0 4vh,100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0,100% 0, 100% 85%, 0 100%);
 }
-#img{
-    top: -10px;
+.containerUI:hover{
+   
+    clip-path: polygon(0% 29%,100% 11%, 100% 85%, 0 100%);
+    transform: scale(1.2);
+    display: block;
+    z-index: 1;
+    transition-duration: .7s;
+    /* transition-delay: .1s; */
     width: 100%;
+    top: -17px;
+
+}
+
+#img{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     display: block;
     border-radius: 20px 20px 0 0;
 }
+
 .containerUI:after{
     content: "";
     height: 100%;
@@ -44,6 +64,7 @@
         #fb36f4
     );
 }
+
 .card2>.containerUI:after{
     background-image: linear-gradient(
         135deg,
@@ -64,12 +85,12 @@
 .details>h3{
     color: #ffffff;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 2.5vw;
     margin: 10px 0 15px 0;
 }
 .details>p{
     color: #a0a0a0;
-    font-size: 15px;
+    font-size: 1.3vw;
     line-height: 30px;
     font-weight: 400;
 }

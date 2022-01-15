@@ -2,23 +2,33 @@
 session_start();
 include 'init/connect.php';
 echo $_SESSION['id'];
-echo $_SESSION['teacher_id'];
+// echo $_SESSION['teacher_id'];
+// $teacher_id=$_SESSION['teacher_id'];
 ?>
 <?php
+
     $id=$_SESSION['id'];
     $sql="SELECT * from student where id='$id'";
     $result=mysqli_query($conn,$sql);
     $rows=mysqli_fetch_assoc($result);
 
 
+if(isset($_POST['show'])){
     
+    $teacher_id=$_POST['id'];
+    $_SESSION['teacher_id']=$teacher_id;
+    $sql="SELECT * from teacher where id='$teacher_id'";
+    echo '<br>', $teacher_id,$_SESSION['teacher_id'];
+    $result=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_assoc($result);
     
+    header("Location:videos.php?id=$id");
 
-    
-
+}
 
 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -38,9 +48,9 @@ echo $_SESSION['teacher_id'];
 <body>
 
     <!------------------- NAVBAR --------------- -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-darke">
         <div class="container-fluid">
-            <img src="./uploads/logo.jpg" class="rounded-circle" alt="Cinque Terre" width="10%" height="10%">
+            <img src="./imgs/32412355.jpg" class="rounded-circle" alt="Cinque Terre" width="5%">
 
 
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -52,10 +62,6 @@ echo $_SESSION['teacher_id'];
                         <a class="nav-link " aria-current="page" href="./learnings.php?id=<?=$rows['id'];?>">My
                             learnigs</a>
                     </li>
-
-
-
-
                 </ul>
 
                 <div class="dropdown ms-auto as ">
@@ -78,6 +84,7 @@ echo $_SESSION['teacher_id'];
     </nav>
     <!------------------- NAVBAR --------------- -->
 
+
     <div class="padd">
 
 
@@ -86,7 +93,7 @@ echo $_SESSION['teacher_id'];
         <?php
 
 
-    $teacher_id= $_SESSION['teacher_id'];
+    // $teacher_id= $_SESSION['teacher_id'];
     $sql1="SELECT * from cart where student_id='$id'";
     $result1=mysqli_query($conn,$sql1) or die(mysqli_error($conn));
     // $row=mysqli_fetch_assoc($result1);
@@ -94,11 +101,11 @@ echo $_SESSION['teacher_id'];
 
 
 
-       while($row=mysqli_fetch_assoc($result1)){
+    while($row=mysqli_fetch_assoc($result1)){
         //    teacher_array.push($row)
-           ?>
+        ?>
+        <form action="" method="post">
 
-        <form action="videos.php" method="post">
 
             <div class="card w-75 mb-5">
                 <div class="card-body">
@@ -108,15 +115,15 @@ echo $_SESSION['teacher_id'];
                     <h6 class="card-title">subject: <?=$row['subject']?></h6>
 
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="videos.php?id=<?=$id?>" class="btn btn-success text-center" name="show">show course</a>
+                    <!-- <a href="videos.php?id=<?=$id?>" class="btn btn-success text-center" name="show">show course</a> -->
                     <!-- <a href="vidios.php?id=<?=$id?>" class="btn btn-danger text-center">delete</a> -->
+                    <input type="submit" class="btn btn-success " name="show" value="show course">
                 </div>
             </div>
         </form>
         <?php
-        // unset($_SESSION['teacher_id']);
+        
     }
-    
     
          ?>
 

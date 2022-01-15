@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-darke">
     <div class="container-fluid">
-        <img src="../uploads/logo.jpg" class="rounded-circle" alt="Cinque Terre" width="10%" height="10%">
+        <img src="../imgs/32412355.jpg" class="rounded-circle" alt="Cinque Terre" width="5%">
 
 
         <div class="collapse navbar-collapse" id="navbarNav">
