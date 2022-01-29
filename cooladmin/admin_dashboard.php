@@ -204,7 +204,7 @@ $count=1;
                                                 <th scope="col">Username</th>
                                                 <th scope="col">E-mail</th>
                                                 <th scope="col">subject_1</th>
-                                                <th scope="col">subject_2</th>
+                                                <!-- <th scope="col">subject_2</th> -->
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
@@ -219,7 +219,7 @@ $count=1;
                                                     <td><?=$rows['username'];?></td>
                                                     <td><?=$rows['email'];?></td>
                                                     <td><?=$rows['subject_1'];?></td>
-                                                    <td><?=$rows['subject_2'];?></td>
+                                                    <!-- <td><?=$rows['subject_2'];?></td> -->
 
                                                     <td>
                                                         <input type="hidden" name="id_teacher" class="btn btn-primary"

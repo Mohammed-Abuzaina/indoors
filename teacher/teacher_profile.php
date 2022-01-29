@@ -44,12 +44,7 @@ include 'navbar.php';
 
             <table class=" border border-5 table table-striped w-50 mx-auto">
                 <tr>
-                    <td colspan="2">
-                        <div class="vstack col-md-5 mx-auto">
-                            <input type="submit" name="add" class="btn btn-success" value="Add video">
-                            </input>
-                        </div>
-                    </td>
+
                 </tr>
                 <!--  row -->
                 <tr>
@@ -129,7 +124,7 @@ include 'navbar.php';
                 <!--  row -->
                 <tr>
                     <td>
-                        Subject -1
+                        Subject
                     </td>
                     <td>
                         <div class="col-auto">
@@ -138,17 +133,7 @@ include 'navbar.php';
                     </td>
                 </tr>
 
-                <!--  row -->
-                <tr>
-                    <td>
-                        Subject -2
-                    </td>
-                    <td>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" value="<?=$rows['subject_2']?>" disabled>
-                        </div>
-                    </td>
-                </tr>
+
 
 
             </table>

@@ -20,8 +20,7 @@
                 </div>
                 <div class="details">
                     <h3>OUR IDEA</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dignissimos, minus aperiam
-                        adipisci exercitationem.</p>
+                    <p>to make the subjects in the universities easer to student , closer and understood </p>
                 </div>
             </div>
             <div class="cardUI card2">
@@ -30,8 +29,7 @@
                 </div>
                 <div class="details">
                     <h3>FUTURE PLANS</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dignissimos, minus aperiam
-                        adipisci exercitationem.</p>
+                    <p>to make all the student use the webstie and getting thier subjects easer to catch</p>
                 </div>
             </div>
             <div class="cardUI card3">
@@ -40,8 +38,7 @@
                 </div>
                 <div class="details">
                     <h3>WHAT PEOPLE SAID</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dignissimos, minus aperiam
-                        adipisci exercitationem.</p>
+                    <p>very helpful webiste to improve thier career in the university</p>
                 </div>
             </div>
         </div>

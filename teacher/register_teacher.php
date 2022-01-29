@@ -16,11 +16,11 @@ if(isset($_POST['submit'])){
     $university=$_POST['university'];
     $major=$_POST['major'];
     $subject_1=$_POST['subject_1'];
-    $subject_2=$_POST['subject_2'];
     $img=$_POST['img'];
+    $price=$_POST['price'];
     // echo $username . '<br> ' . $password . '<br> ' . $phone.''.$university . '<br> ' . $major;
-    $sql ="INSERT INTO `teacher`( `username`, `password`, `email`, `phone_number`, `university`, `major`,`subject_1`,`subject_2`, `img`) 
-    VALUES ('$username','$password','$email','$phone','$university','$major','$subject_1','$subject_2','$img')
+    $sql ="INSERT INTO `teacher`( `username`, `password`, `email`, `phone_number`, `university`, `major`,`subject_1`, `img`,`price`) 
+    VALUES ('$username','$password','$email','$phone','$university','$major','$subject_1','$img',$price)
      ";
      $result=mysqli_query($conn,$sql) or die(mysqli_error($conn));
      echo $result;
@@ -47,88 +47,37 @@ if(isset($_POST['submit'])){
 include 'header.php';
 
 ?>
+<link rel="stylesheet" href="register_teacher.css">
 
 
 <body>
     <!-------------------  REGISTER START HERE    --------------------->
-    <div class="container">
-        <div class="register_user mb-2">
-            <h1 class="display-1">Register Page Teacher </h1>
-            <br>
-            <form action="" method="post">
-                <div class="mb-2">
-                    <div class="mx-5">
-                        <label for="Username" class="form-label">Teacher Username:</label>
-                        <input type="text" name="username" class="form-control" id="Username"
-                            placeholder="Enter Your Username ">
-                    </div>
-                    <br>
-                    <br>
-                    <div class="mx-5">
-                        <label for="email" class="form-label">Email :</label>
-                        <input type="email" name="email" class="form-control" id="email"
-                            placeholder="Enter Your Email ">
-                    </div>
-                    <br>
-                    <br>
-                    <div class="mx-5">
-                        <label for="password" class="form-label">Password :</label>
-                        <input type="password" name="password" class="form-control" id="password"
-                            placeholder="Enter Your Password ">
-                    </div>
-                    <br>
-                    <br>
-                    <div class="mx-5">
-                        <label for="Phone" class="form-label">Phone Number:</label>
-                        <input type="tel" name="phone" class="form-control" id="Phone"
-                            placeholder="Enter Your Phone Number ">
-                        <!-- //pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" -->
-                    </div>
-                    <br>
-                    <br>
-                    <div class="mx-5">
-                        <label for="Universty" class="form-label">Universty:</label>
-                        <input type="text" name="university" class="form-control" id="Universty"
-                            placeholder="Enter Your Universty Name ">
-                    </div>
-                    <br>
-                    <br>
-                    <div class="mx-5">
-                        <label for="Major" class="form-label">Major:</label>
-                        <input type="text" name="major" class="form-control" id="Major" placeholder="Enter Your Major ">
-                    </div>
-                    <br>
-                    <br>
-                    <div class="mx-5">
-                        <label for="subject_1" class="form-label">Subject-1:</label>
-                        <input type="text" name="subject_1" class="form-control" id="subject_1"
-                            placeholder="Enter Your First subject ">
-                    </div>
-                    <br>
-                    <div class="mx-5">
-                        <label for="subject_2" class="form-label">Subject-2:</label>
-                        <input type="text" name="subject_2" class="form-control" id="subject_2"
-                            placeholder="Enter Your Second subject ">
-                    </div>
-                    <br>
-
-
-                    <div class="mb-3 mx-5">
-                        <label for="Image" class="form-label">Image:</label>
-                        <input type="file" name="img" class="form-control" id="Image" placeholder="Enter Your Image ">
-                    </div>
-                    <br>
-
-
-
-                    <div class="d-grid gap-2 col-6 mx-auto">
-                        <input class="btn btn-primary " type="submit" name="submit">
-                    </div>
+    <form action="" method="post">
+        <div class="container">
+            <div class="left">
+                <div class="header">
+                    <h2 class="animation a1">Welcome Friend</h2>
+                    <h4 class="animation a2">Register new account using username and password</h4>
                 </div>
-
-            </form>
+                <div class="form">
+                    <input type="text" name="username" class="form-field animation a3" placeholder="User Name">
+                    <input type="password" name="password" class="form-field animation a4" placeholder="Password">
+                    <input type="email" name="email" class="form-field animation a4" placeholder="Email">
+                    <input type="text" name="university" class="form-field animation a4" placeholder="Unversity">
+                    <input type="text" name="phone" class="form-field animation a4" placeholder="Phone Number">
+                    <input type="text" name="major" class="form-field animation a4" placeholder="Major">
+                    <input type="number" name="price" class="form-field animation a4" placeholder="price">
+                    <input type="text" name="subject_1" class="form-field animation a4" placeholder="subject">
+                    <label for="img" class=" animation a4">choose your image</label>
+                    <input type="file" name="img" class=" form-control animation a4" placeholder="choose an image">
+                    <!-- <p class="animation a5"><a href="register_user.php">Register as user</a></p>
+                    <p class="animation a5"><a href="./teacher/register_teacher.php">Register as Teacher</a></p> -->
+                    <button type="submit" name="submit" class="animation a6">Register</button>
+                </div>
+            </div>
+            <div class="right"></div>
         </div>
-    </div>
+    </form>
 
     <!-------------------  REGISTER END HERE    --------------------->
 

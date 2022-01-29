@@ -41,7 +41,7 @@ if(isset($_POST['update'])){
     `major`='$major',
     `price`='$price',
     `subject_1`='$subject_1',
-    `subject_2`='$subject_2',
+    
     `img`='$image'
      WHERE id='$id'
      ";

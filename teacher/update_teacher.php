@@ -5,7 +5,7 @@ include '../init/connect.php';
 
 <?php
     $id=$_SESSION['id'];
-    echo $id;
+    // echo $id;
     $sql="SELECT * from teacher where id = '$id'";
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)>0){
@@ -121,7 +121,7 @@ include 'navbar.php';
                 <!--  row -->
                 <tr>
                     <td>
-                        Subject -1
+                        Subject
                     </td>
                     <td>
                         <div class="col-auto">
@@ -130,17 +130,7 @@ include 'navbar.php';
                     </td>
                 </tr>
 
-                <!--  row -->
-                <tr>
-                    <td>
-                        Subject -2
-                    </td>
-                    <td>
-                        <div class="col-auto">
-                            <input type="text" name="subject_2" class="form-control" value="<?=$rows['subject_2']?>">
-                        </div>
-                    </td>
-                </tr>
+
 
                 <!--  row -->
                 <tr>

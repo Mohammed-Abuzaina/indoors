@@ -46,13 +46,7 @@
 .as{
   margin-right: 2%;
 }
-.footer {
-  position: absolute;
 
-  width: 100%;
-  /* Set the fixed height of the footer here */
- 
-}
 
 /* Taller footer on small screens */
 
@@ -60,7 +54,7 @@
 /* Sticky footer style and color
 -------------------------------------------------- */
 footer {
-  padding-top: 30px;
+  padding-top: 10px;
   background-color: #292c2f;
   color: #bbb;
 }
@@ -83,6 +77,27 @@ footer .form-control {
     resize: none;
     color: #d1d2d2;
     padding: 0.7em 1em;
+}
+
+
+
+#playlist {
+  display:table;
+}
+#playlist li{
+  cursor:pointer;
+  padding:8px;
+}
+
+#playlist li:hover{
+  color:blue;                        
+}
+#videoarea {
+  display:grid;
+  width:640px;
+  height:480px;
+  margin:10px;    
+  border:1px solid silver;
 }
 
 

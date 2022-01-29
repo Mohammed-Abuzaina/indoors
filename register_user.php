@@ -6,7 +6,7 @@ include 'init/connect.php';
 <?php
 if(isset($_POST['submit'])){
     // for empty Fields 
-    if(!empty($_POST['username']&& $_POST['email']&& $_POST['password']&& $_POST['university']&& $_POST['phone']&& $_POST['major']&& $_POST['img']))
+    if(!empty($_POST['username']&& $_POST['email']&& $_POST['password']&& $_POST['university']&& $_POST['phone']&& $_POST['major']))
     {
     $_SESSION['name']=$_POST['username'];
     $username=$_POST['username'];
@@ -15,19 +15,19 @@ if(isset($_POST['submit'])){
     $phone=$_POST['phone'];
     $university=$_POST['university'];
     $major=$_POST['major'];
-    $img=$_POST['img'];
+    
     // echo $username . '<br> ' . $password . '<br> ' . $phone.''.$university . '<br> ' . $major;
-    $sql ="INSERT INTO `student`( `username`, `password`, `email`, `phone_number`, `university`, `major`, `img`) 
-    VALUES ('$username','$password','$email','$phone','$university','$major','$img')
+    $sql ="INSERT INTO `student`( `username`, `password`, `email`, `phone_number`, `university`, `major`) 
+    VALUES ('$username','$password','$email','$phone','$university','$major')
      ";
      $result=mysqli_query($conn,$sql) or die(mysqli_error($conn));
-     echo $result;
-     echo $sql;
-     echo '<br>';
-     echo  $_SESSION['name'];
+    //  echo $result;
+    //  echo $sql;
+    //  echo '<br>';
+    //  echo  $_SESSION['name'];
     //  header('Location:login.php');
      
-
+header('Location:login.php');
     }
     else{
         echo '<div class="alert alert-danger" role="alert">';
@@ -49,7 +49,7 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="register_user.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Register page</title>
@@ -57,72 +57,28 @@ if(isset($_POST['submit'])){
 
 <body>
     <!-------------------  REGISTER START HERE    --------------------->
-    <div class="container">
-        <div class="register_user mb-2">
-            <h1 class="display-1">Register Page </h1>
-            <br>
-            <form action="" method="post">
-                <div class="mb-2">
-                    <div class="mx-5">
-                        <label for="Username" class="form-label">Username:</label>
-                        <input type="text" name="username" class="form-control" id="Username"
-                            placeholder="Enter Your Username ">
-                    </div>
-                    <br>
-                    <br>
-                    <div class="mx-5">
-                        <label for="email" class="form-label">Email :</label>
-                        <input type="email" name="email" class="form-control" id="email"
-                            placeholder="Enter Your Email ">
-                    </div>
-                    <br>
-                    <br>
-                    <div class="mx-5">
-                        <label for="password" class="form-label">Password :</label>
-                        <input type="password" name="password" class="form-control" id="password"
-                            placeholder="Enter Your Password ">
-                    </div>
-                    <br>
-                    <br>
-                    <div class="mx-5">
-                        <label for="Phone" class="form-label">Phone Number:</label>
-                        <input type="tel" name="phone" class="form-control" id="Phone"
-                            placeholder="Enter Your Phone Number ">
-                        <!-- //pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" -->
-                    </div>
-                    <br>
-                    <br>
-                    <div class="mx-5">
-                        <label for="Universty" class="form-label">Universty:</label>
-                        <input type="text" name="university" class="form-control" id="Universty"
-                            placeholder="Enter Your Universty Name ">
-                    </div>
-                    <br>
-                    <br>
-                    <div class="mx-5">
-                        <label for="Major" class="form-label">Major:</label>
-                        <input type="text" name="major" class="form-control" id="Major" placeholder="Enter Your Major ">
-                    </div>
-                    <br>
-                    <br>
-
-
-                    <div class="mb-3 mx-5">
-                        <label for="Image" class="form-label">Image:</label>
-                        <input type="file" name="img" class="form-control" id="Image" placeholder="Enter Your Image ">
-                    </div>
-                    <br>
-
-                    <br>
-
-                    <div class="d-grid gap-2 col-6 mx-auto">
-                        <input class="btn btn-primary " type="submit" name="submit">
-                    </div>
+    <form action="" method="post">
+        <div class="container">
+            <div class="left">
+                <div class="header">
+                    <h2 class="animation a1">Welcome Friend</h2>
+                    <h4 class="animation a2">Register new account using username and password</h4>
                 </div>
-
-            </form>
+                <div class="form">
+                    <input type="text" name="username" class="form-field animation a3" placeholder="User Name">
+                    <input type="password" name="password" class="form-field animation a4" placeholder="Password">
+                    <input type="email" name="email" class="form-field animation a4" placeholder="Email">
+                    <input type="text" name="university" class="form-field animation a4" placeholder="Unversity">
+                    <input type="text" name="phone" class="form-field animation a4" placeholder="Phone Number">
+                    <input type="text" name="major" class="form-field animation a4" placeholder="Major">
+                    <!-- <p class="animation a5"><a href="register_user.php">Register as user</a></p>
+                    <p class="animation a5"><a href="./teacher/register_teacher.php">Register as Teacher</a></p> -->
+                    <button type="submit" name="submit" class="animation a6">Register</button>
+                </div>
+            </div>
+            <div class="right"></div>
         </div>
-    </div>
+    </form>
 
     <!-------------------  REGISTER END HERE    --------------------->
 

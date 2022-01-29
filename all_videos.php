@@ -12,6 +12,7 @@ echo $_SESSION['id'];
     
 ?>
 
+
 <?php
     $id=$_SESSION['id'];
     
@@ -75,14 +76,17 @@ echo $_SESSION['id'];
 <body>
 
 
-    <!------------------- NAVBAR --------------- -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-darke">
         <div class="container-fluid">
-            <img src="./imgs/32412355.jpg" class="rounded-circle" alt="Cinque Terre" width="5%">
 
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+            <img src="./imgs/32412355.jpg" class="rounded-circle" alt="Cinque Terre" width="10%">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="./home_student.php">Home page</a>
                     </li>
@@ -90,30 +94,28 @@ echo $_SESSION['id'];
                         <a class="nav-link " aria-current="page" href="./learnings.php?id=<?=$rows['id'];?>">My
                             learnigs</a>
                     </li>
-
-
-
-
                 </ul>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="dropdown ms-auto as ">
+                        <span class="navbar-brand" href=""> <?= $rows['username']; ?></span>
+                        <a class="dropdown-toggle ms-auto" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="./imgs/bran.png" width="60vh" alt="">
+                        </a>
 
-                <div class="dropdown ms-auto as ">
-                    <a class="navbar-brand" href=""> <?= $rows['username']; ?></a>
-                    <a class="dropdown-toggle ms-auto" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <img src="./imgs/bran.png" width="60vh" alt="">
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 
-                        <li><a class="dropdown-item" href="./teacher/logout.php">logout</a></li>
-                    </ul>
+                            <li><a class="dropdown-item" href="./teacher/logout.php">logout</a></li>
+                        </ul>
+                    </div>
+
+
                 </div>
-
-
             </div>
-        </div>
     </nav>
+    <!------------------- / NAVBAR --------------- -->
+
 
     <!------------------- NAVBAR --------------- -->
     <div class="padd">

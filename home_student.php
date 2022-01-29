@@ -39,17 +39,27 @@ include 'init/connect.php';
         $subject=$row['subject_1'];
 
         
+        $sql_check="select * from cart where teacher_id='$teacher_id'and student_id='$student_id'";
+        $result_check=mysqli_query($conn,$sql_check);
+        $count=mysqli_num_rows($result_check);
+        if($count){
+            echo '<div class="alert alert-warning" role="alert">
+            You Already bought this course !</div>';
+        }else{
+
         
         $sql="INSERT INTO `cart`( `teacher_id`, `teacher_name`, `student_id`, `subject`) VALUES ('$teacher_id','$teacher_name','$student_id','$subject')";
         $result=mysqli_query($conn,$sql);
         if($result){
             $query2="UPDATE `teacher` SET `enrolls`='$enroll' WHERE id='$teacher_id'";
             $action1=mysqli_query($conn,$query2);
+            echo $action1;
             
             header("Location:learnings.php?id=$student_id");
         }
         else{
             echo'you bought that course already !  ', mysqli_error($conn);
+        }
         }
     }
   
@@ -77,12 +87,18 @@ include 'init/connect.php';
 <body class="bg">
 
     <!------------------- NAVBAR --------------- -->
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-darke">
         <div class="container-fluid">
 
-            <img src="./imgs/32412355.jpg" class="rounded-circle" alt="Cinque Terre" width="5%">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+            <img src="./imgs/logo2.png" class="rounded-circle" alt="Cinque Terre" width="7%">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="./home_student.php">Home page</a>
                     </li>
@@ -90,31 +106,27 @@ include 'init/connect.php';
                         <a class="nav-link " aria-current="page" href="./learnings.php?id=<?=$rows['id'];?>">My
                             learnigs</a>
                     </li>
-
-
-
-
                 </ul>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="dropdown ms-auto as ">
+                        <span class="navbar-brand" href=""> <?= $rows['username']; ?></span>
+                        <a class="dropdown-toggle ms-auto" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="./imgs/bran.png" width="60vh" alt="">
+                        </a>
 
-                <div class="dropdown ms-auto as ">
-                    <a class="navbar-brand" href=""> <?= $rows['username']; ?></a>
-                    <a class="dropdown-toggle ms-auto" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <img src="./imgs/bran.png" width="60vh" alt="">
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 
-                        <li><a class="dropdown-item" href="./teacher/logout.php">logout</a></li>
-                    </ul>
+                            <li><a class="dropdown-item" href="./teacher/logout.php">logout</a></li>
+                        </ul>
+                    </div>
+
+
                 </div>
-
-
             </div>
-        </div>
     </nav>
-    <!------------------- NAVBAR --------------- -->
+    <!------------------- / NAVBAR --------------- -->
 
     <div class="padd">
         <header class="header">
@@ -142,7 +154,7 @@ include 'init/connect.php';
         </div>
 
 
-        <div class="row row-cols-1 r row-cols-md-3 g-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
         //  $sql="SELECT * from teacher  limit 3";
          $sql="SELECT * FROM teacher ORDER BY RAND ()  LIMIT 3";
@@ -150,25 +162,27 @@ include 'init/connect.php';
          while($rows=mysqli_fetch_assoc($result)){
              
              ?>
+            <!-- <div class="card"> -->
             <form action="" method="post">
 
                 <div class="contain">
                     <div class="card-main">
                         <div class="card-image">
-                            <img src="./uploads/<?=$rows['img'];?>" width="50%" alt="">
+                            <img src="./uploads/<?=$rows['img'];?>" class="pt-1" width="30%" alt="">
 
                         </div>
                         <div class="card-text">
                             <input type="hidden" value="<?=$rows['id'];?>" name="teacher_id">
                             <span class="date"><?=$rows['username'];?></span>
                             <h2><?=$rows['subject_1'];?></h2>
-                            <p>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus
+                            <p> University <?=$rows['university'];?><br> sit amet consectetur
                             </p>
-                            <div class="price"><?=$rows['price'];?> JD
+                            <div class="price"><?=$rows['price'];?> JOD
                             </div>
 
                             <button type="submit" name="buy" class="btn-brown" style="vertical-align:middle"
                                 id="inputfield1"> <span>Enroll Now </span></button>
+                            <!-- <h6><?=$rows['university'];?></h6> -->
 
                         </div>
                         <div class="card-stats">
@@ -182,7 +196,7 @@ include 'init/connect.php';
                             </div>
                             <div class="stat">
                                 <div class="value"><?=$rows['raters'];?></div>
-                                <div class="type">How much Raters</div>
+                                <div class="type"> Raters</div>
                             </div>
                         </div>
                     </div>
@@ -191,10 +205,13 @@ include 'init/connect.php';
 
 
             </form>
+
+            <!-- </div> -->
             <?php
          }
          
          ?>
+
         </div>
 
         <br>

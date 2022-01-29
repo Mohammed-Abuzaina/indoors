@@ -42,12 +42,14 @@ include 'navbar.php';
                             <lable for="description">Add a description :</lable>
                             <input class="form-control" type="text" name="description" id="description">
                             <br>
+                            <input class="form-control" type="hidden" name="subject" id="description"
+                                value="<?=$rows['subject_1']?>">
 
-                            <select name="subject" class="form-select bg-light" aria-label="Default select example">
+                            <!-- <select name="subject" class="form-select bg-light" aria-label="Default select example">
                                 <option> Subject name :</option>
                                 <option value="<?=$rows['subject_1']?>"><?=$rows['subject_1']?></option>
                                 <option value="<?=$rows['subject_2']?>"><?=$rows['subject_2']?></option>
-                            </select>
+                            </select> -->
 
 
                             <input class="form-control btn btn-success my-2" type="submit" name="submit" value="Upload">

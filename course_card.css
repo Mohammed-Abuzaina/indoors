@@ -8,8 +8,8 @@
   }
   .card-main {
     display: grid;
-    grid-template-columns: 300px;
-    grid-template-rows: 148px 210px 80px;
+    /* grid-template-columns: 300px; */
+    /* grid-template-rows: 82px 243px 80px; */
     grid-template-areas: "image" "text" "stats";
   
     border-radius: 18px;
